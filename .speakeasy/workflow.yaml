@@ -1,0 +1,12 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    alloy-openapi-spec:
+        inputs:
+            - location: ../Downloads/embedded-openapi (1).json
+        registry:
+            location: registry.speakeasyapi.dev/alloy/alloy/alloy-openapi-spec
+targets:
+    my-first-target:
+        target: java
+        source: alloy-openapi-spec

@@ -1,0 +1,28 @@
+speakeasyVersion: 1.296.1
+sources:
+    alloy-openapi-spec:
+        sourceNamespace: alloy-openapi-spec
+        sourceRevisionDigest: sha256:076cd79b5cd03f049543b1af88d8cb5ac89d116fc6e24b3beba611969e507cf5
+        sourceBlobDigest: sha256:befc6cf8bf94fd36e7adf1554ffa1fa90de07422c886bb459cfd8125583c7013
+        tags:
+            - latest
+targets:
+    my-first-target:
+        source: alloy-openapi-spec
+        sourceNamespace: alloy-openapi-spec
+        sourceRevisionDigest: sha256:076cd79b5cd03f049543b1af88d8cb5ac89d116fc6e24b3beba611969e507cf5
+        sourceBlobDigest: sha256:befc6cf8bf94fd36e7adf1554ffa1fa90de07422c886bb459cfd8125583c7013
+        outLocation: /Users/adebola/alloy-sdk-java
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        alloy-openapi-spec:
+            inputs:
+                - location: ../Downloads/embedded-openapi (1).json
+            registry:
+                location: registry.speakeasyapi.dev/alloy/alloy/alloy-openapi-spec
+    targets:
+        my-first-target:
+            target: java
+            source: alloy-openapi-spec

@@ -1,0 +1,12 @@
+# GetWorkflowLogsRequest
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `workflowId`                                                                        | *String*                                                                            | :heavy_check_mark:                                                                  | The Id of the workflow you want to find logs for                                    |
+| `userId`                                                                            | *Optional<? extends String>*                                                        | :heavy_minus_sign:                                                                  | The Id of the user you want delete logs for. Returned from the Create User endpoint |
+| `page`                                                                              | *Optional<? extends Integer>*                                                       | :heavy_minus_sign:                                                                  | page of results                                                                     |
+| `limit`                                                                             | *Optional<? extends Integer>*                                                       | :heavy_minus_sign:                                                                  | Number of results per page (max 30, default 10)                                     |
+| `order`                                                                             | *Optional<? extends String>*                                                        | :heavy_minus_sign:                                                                  | asc or desc for ascending/descending (default desc)                                 |
