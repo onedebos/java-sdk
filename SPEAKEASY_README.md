@@ -1,41 +1,92 @@
-# Alloy Java SDK
+# openapi
 
-This is a wrapper to interact with Alloy Integrations' APIs. This library supports both [Alloy Embedded](https://runalloy.com/embedded/) and [Alloy Unified API](https://runalloy.com/unified-api/).
+<div align="left">
+    <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
+    </a>
+</div>
 
-## Documentation
 
-Visit the [Alloy Docs site](https://docs.runalloy.com/docs) for more information on how to get started with Alloy APIs.
+## 🏗 **Welcome to your new SDK!** 🏗
 
-### SDK Installation
-After cloning the git repository to your file system you can build the SDK artifact from source to the `build` directory by running `gradle build` on *nix systems or `gradle.bat` on Windows systems.
+It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
+- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasyapi.dev/docs/customize-sdks)
+- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
+- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
+- [ ] ✨ When ready to productionize, delete this section from the README
 
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
+
+### Getting started
+
+The samples below show how a published SDK artifact is used:
+
+Gradle:
+```groovy
+implementation 'org.openapis.openapi:openapi:0.0.5'
+```
+
+Maven:
+```xml
+<dependency>
+    <groupId>org.openapis.openapi</groupId>
+    <artifactId>openapi</artifactId>
+    <version>0.0.5</version>
+</dependency>
+```
+
+### How to build
+After cloning the git repository to your file system you can build the SDK artifact from source to the `build` directory by running `./gradlew build` on *nix systems or `gradlew.bat` on Windows systems.
+
+If you wish to build from source and publish the SDK artifact to your local Maven repository (on your filesystem) then use the following command (after cloning the git repo locally):
+
+On *nix:
+```bash
+./gradlew publishToMavenLocal -Pskip.signing
+```
+On Windows:
+```bash
+gradlew.bat publishToMavenLocal -Pskip.signing
+```
+<!-- End SDK Installation [installation] -->
 
 <!-- Start SDK Example Usage [usage] -->
-# Usage
-
-The package needs to be configured with your account's API key, which is available in the Alloy Dashboard under settings. You must supply the API key with each instantiation of the client.
-
 ## SDK Example Usage
 
 ### Example
-To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 
 ```java
+package hello.world;
+
+import java.math.BigDecimal;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
 import org.openapis.openapi.AlloySDK;
+import org.openapis.openapi.models.components.*;
+import org.openapis.openapi.models.components.Security;
 import org.openapis.openapi.models.operations.*;
+import org.openapis.openapi.utils.EventStream;
+import org.openapitools.jackson.nullable.JsonNullable;
+import static java.util.Map.entry;
 
 public class Application {
 
     public static void main(String[] args) throws Exception {
         try {
-            // when instantiating the SDK with your API_KEY, always add the "Bearer" string.
-            AlloySDK sdk = AlloySDK.builder().apiKey("Bearer <YOUR_API_KEY>").build();
+            AlloySDK sdk = AlloySDK.builder()
+                .apiKey("<YOUR_API_KEY_HERE>")
+                .build();
 
             UpdateAUserResponse res = sdk.updateAUser()
-                    .userId("<ALLOY_USER_ID>")
-                    .requestBody(UpdateAUserRequestBody.builder()
-                            .build())
-                    .call();
+                .userId("<value>")
+                .requestBody(UpdateAUserRequestBody.builder()
+                    .build())
+                .call();
 
             if (res.object().isPresent()) {
                 // handle response
@@ -107,6 +158,55 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | models/errors/UpdateAUserResponseBody | 401                                   | application/json                      |
 | models/errors/SDKError                | 4xx-5xx                               | */*                                   |
 
+### Example
+
+```java
+package hello.world;
+
+import java.math.BigDecimal;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import org.openapis.openapi.AlloySDK;
+import org.openapis.openapi.models.components.*;
+import org.openapis.openapi.models.components.Security;
+import org.openapis.openapi.models.operations.*;
+import org.openapis.openapi.utils.EventStream;
+import org.openapitools.jackson.nullable.JsonNullable;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+        try {
+            AlloySDK sdk = AlloySDK.builder()
+                .apiKey("<YOUR_API_KEY_HERE>")
+                .build();
+
+            UpdateAUserResponse res = sdk.updateAUser()
+                .userId("<value>")
+                .requestBody(UpdateAUserRequestBody.builder()
+                    .build())
+                .call();
+
+            if (res.object().isPresent()) {
+                // handle response
+            }
+        } catch (org.openapis.openapi.models.errors.UpdateAUserResponseBody e) {
+            // handle exception
+            throw e;
+        } catch (org.openapis.openapi.models.errors.SDKError e) {
+            // handle exception
+            throw e;
+        } catch (Exception e) {
+            // handle exception
+            throw e;
+        }
+    }
+}
+```
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -123,9 +223,21 @@ You can override the default server globally by passing a server index to the `s
 #### Example
 
 ```java
+package hello.world;
+
+import java.math.BigDecimal;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
 import org.openapis.openapi.AlloySDK;
 import org.openapis.openapi.models.components.*;
-
+import org.openapis.openapi.models.components.Security;
+import org.openapis.openapi.models.operations.*;
+import org.openapis.openapi.utils.EventStream;
+import org.openapitools.jackson.nullable.JsonNullable;
+import static java.util.Map.entry;
 
 public class Application {
 
@@ -133,7 +245,7 @@ public class Application {
         try {
             AlloySDK sdk = AlloySDK.builder()
                 .serverIndex(0)
-                .apiKey("Bearer <YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_API_KEY_HERE>")
                 .build();
 
             UpdateAUserResponse res = sdk.updateAUser()
@@ -164,10 +276,21 @@ public class Application {
 
 The default server can also be overridden globally by passing a URL to the `serverURL` builder method when initializing the SDK client instance. For example:
 ```java
+package hello.world;
 
+import java.math.BigDecimal;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
 import org.openapis.openapi.AlloySDK;
 import org.openapis.openapi.models.components.*;
-
+import org.openapis.openapi.models.components.Security;
+import org.openapis.openapi.models.operations.*;
+import org.openapis.openapi.utils.EventStream;
+import org.openapitools.jackson.nullable.JsonNullable;
+import static java.util.Map.entry;
 
 public class Application {
 
@@ -175,7 +298,7 @@ public class Application {
         try {
             AlloySDK sdk = AlloySDK.builder()
                 .serverURL("https://embedded.runalloy.com/2024-03/")
-                .apiKey("Bearer <YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_API_KEY_HERE>")
                 .build();
 
             UpdateAUserResponse res = sdk.updateAUser()
@@ -213,15 +336,59 @@ This SDK supports the following security scheme globally:
 | -------- | -------- | -------- |
 | `apiKey` | apiKey   | API key  |
 
+To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
+```java
+package hello.world;
 
+import java.math.BigDecimal;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import org.openapis.openapi.AlloySDK;
+import org.openapis.openapi.models.components.*;
+import org.openapis.openapi.models.components.Security;
+import org.openapis.openapi.models.operations.*;
+import org.openapis.openapi.utils.EventStream;
+import org.openapitools.jackson.nullable.JsonNullable;
+import static java.util.Map.entry;
 
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+        try {
+            AlloySDK sdk = AlloySDK.builder()
+                .apiKey("<YOUR_API_KEY_HERE>")
+                .build();
+
+            UpdateAUserResponse res = sdk.updateAUser()
+                .userId("<value>")
+                .requestBody(UpdateAUserRequestBody.builder()
+                    .build())
+                .call();
+
+            if (res.object().isPresent()) {
+                // handle response
+            }
+        } catch (org.openapis.openapi.models.errors.UpdateAUserResponseBody e) {
+            // handle exception
+            throw e;
+        } catch (org.openapis.openapi.models.errors.SDKError e) {
+            // handle exception
+            throw e;
+        } catch (Exception e) {
+            // handle exception
+            throw e;
+        }
+    }
+}
+```
 <!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development
-This repository includes components generated by [Speakeasy](https://www.speakeasyapi.dev/) based on [this OpenAPI spec](https://github.com/onedebos/alloy-openapi-spec), as well as human authored code that simplifies usage.
-
 
 ## Maturity
 
