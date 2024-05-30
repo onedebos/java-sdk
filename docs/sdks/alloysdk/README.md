@@ -69,7 +69,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             AlloySDK sdk = AlloySDK.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("Bearer <YOUR_API_KEY_HERE>")
                 .build();
 
             UpdateAUserResponse res = sdk.updateAUser()
